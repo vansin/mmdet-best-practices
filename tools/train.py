@@ -12,7 +12,6 @@ import torch.distributed as dist
 from mmcv import Config, DictAction
 from mmcv.runner import get_dist_info, init_dist
 from mmcv.utils import get_git_hash
-
 from mmdet import __version__
 from mmdet.apis import init_random_seed, set_random_seed, train_detector
 from mmdet.datasets import build_dataset
@@ -26,12 +25,11 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')
     parser.add_argument('config', help='train config file path')
     parser.add_argument('--work-dir', help='the dir to save logs and models')
-    parser.add_argument(
-        '--resume-from', help='the checkpoint file to resume from')
-    parser.add_argument(
-        '--auto-resume',
-        action='store_true',
-        help='resume from the latest checkpoint automatically')
+    parser.add_argument('--resume-from',
+                        help='the checkpoint file to resume from')
+    parser.add_argument('--auto-resume',
+                        action='store_true',
+                        help='resume from the latest checkpoint automatically')
     parser.add_argument(
         '--no-validate',
         action='store_true',
@@ -48,12 +46,11 @@ def parse_args():
         nargs='+',
         help='(Deprecated, please use --gpu-id) ids of gpus to use '
         '(only applicable to non-distributed training)')
-    group_gpus.add_argument(
-        '--gpu-id',
-        type=int,
-        default=0,
-        help='id of gpu to use '
-        '(only applicable to non-distributed training)')
+    group_gpus.add_argument('--gpu-id',
+                            type=int,
+                            default=0,
+                            help='id of gpu to use '
+                            '(only applicable to non-distributed training)')
     parser.add_argument('--seed', type=int, default=None, help='random seed')
     parser.add_argument(
         '--diff-seed',
@@ -80,16 +77,14 @@ def parse_args():
         'It also allows nested list/tuple values, e.g. key="[(a,b),(c,d)]" '
         'Note that the quotation marks are necessary and that no white space '
         'is allowed.')
-    parser.add_argument(
-        '--launcher',
-        choices=['none', 'pytorch', 'slurm', 'mpi'],
-        default='none',
-        help='job launcher')
+    parser.add_argument('--launcher',
+                        choices=['none', 'pytorch', 'slurm', 'mpi'],
+                        default='none',
+                        help='job launcher')
     parser.add_argument('--local_rank', type=int, default=0)
-    parser.add_argument(
-        '--auto-scale-lr',
-        action='store_true',
-        help='enable automatically scaling LR.')
+    parser.add_argument('--auto-scale-lr',
+                        action='store_true',
+                        help='enable automatically scaling LR.')
     args = parser.parse_args()
     if 'LOCAL_RANK' not in os.environ:
         os.environ['LOCAL_RANK'] = str(args.local_rank)
@@ -144,8 +139,11 @@ def main():
         cfg.work_dir = args.work_dir
     elif cfg.get('work_dir', None) is None:
         # use config filename as default work_dir if cfg.work_dir is None
-        cfg.work_dir = osp.join('./work_dirs',
-                                osp.splitext(osp.basename(args.config))[0])
+        # cfg.work_dir = osp.join('./work_dirs',
+        #                         osp.splitext(osp.basename(args.config))[0])
+        cfg.work_dir = osp.join(
+            './work_dirs',
+            osp.splitext(osp.relpath(args.config, 'configs'))[0])
 
     if args.resume_from is not None:
         cfg.resume_from = args.resume_from
@@ -209,10 +207,9 @@ def main():
     meta['seed'] = seed
     meta['exp_name'] = osp.basename(args.config)
 
-    model = build_detector(
-        cfg.model,
-        train_cfg=cfg.get('train_cfg'),
-        test_cfg=cfg.get('test_cfg'))
+    model = build_detector(cfg.model,
+                           train_cfg=cfg.get('train_cfg'),
+                           test_cfg=cfg.get('test_cfg'))
     model.init_weights()
 
     datasets = [build_dataset(cfg.data.train)]
@@ -223,19 +220,18 @@ def main():
     if cfg.checkpoint_config is not None:
         # save mmdet version, config file content and class names in
         # checkpoints as meta data
-        cfg.checkpoint_config.meta = dict(
-            mmdet_version=__version__ + get_git_hash()[:7],
-            CLASSES=datasets[0].CLASSES)
+        cfg.checkpoint_config.meta = dict(mmdet_version=__version__ +
+                                          get_git_hash()[:7],
+                                          CLASSES=datasets[0].CLASSES)
     # add an attribute for visualization convenience
     model.CLASSES = datasets[0].CLASSES
-    train_detector(
-        model,
-        datasets,
-        cfg,
-        distributed=distributed,
-        validate=(not args.no_validate),
-        timestamp=timestamp,
-        meta=meta)
+    train_detector(model,
+                   datasets,
+                   cfg,
+                   distributed=distributed,
+                   validate=(not args.no_validate),
+                   timestamp=timestamp,
+                   meta=meta)
 
 
 if __name__ == '__main__':
