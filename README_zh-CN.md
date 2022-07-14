@@ -6,7 +6,7 @@
 
 </div>
 
-##　1. 环境配置
+## 1.环境配置
 
 ```shell
 git clone https://github.com/vansin/mmdet-best-practices.git
