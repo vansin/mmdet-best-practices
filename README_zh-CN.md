@@ -8,7 +8,6 @@
 
 本仓库将介绍①包含无侵入式自定义模型、数据集、Hook的最佳实践②提供参加目标检测比赛的模板③组织MMDetection源码共读活动
 
-
 ## 1.环境配置
 
 ```shell
@@ -40,7 +39,6 @@ pip install -U openmim
 mim install mmcv-full
 ```
 
-
 ### 安装submodule
 
 <!-- （不需要执行）
@@ -50,22 +48,23 @@ git submodule add https://www.github.com/open-mmlab/mmclassification.git
 ``` -->
 
 以下命令用户把MMDetection和MMClassification同步到本地。
+
 ```shell
 git submodule init
 git submodule update
 ```
 
-
 #### 安装MMDetection
 
 ```shell
 pip install -r mmdetection/requirements/build.txt
+pip install -v -e mmdetection
 ```
 
 #### 安装MMClassification(可选)
 
 ```shell
-
+pip install -v -e mmclassification
 ```
 
 ### 代码规范相关(可选)
@@ -73,6 +72,5 @@ pip install -r mmdetection/requirements/build.txt
 ```shell
 pip install pre-commit
 ```
-
 
 ## 2. 数据集
