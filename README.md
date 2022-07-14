@@ -71,6 +71,7 @@ pip install -v -e mmclassification
 
 ```shell
 pip install pre-commit
+pre-commit install
 ```
 
 ## 2. 数据集
