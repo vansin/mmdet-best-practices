@@ -75,3 +75,7 @@ pre-commit install
 ```
 
 ## 2. 数据集
+
+## 3. 比赛
+
+[X光安检图像检测挑战赛3.0](https://challenge.xfyun.cn/topic/info?type=Xray-2022)
