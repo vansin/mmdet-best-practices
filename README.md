@@ -76,6 +76,14 @@ pre-commit install
 
 ## 2. 数据集
 
+### 重命名config
+
+```shell
+find . -type f -name "*coco*" -print0 | while read -r -d '' file; do
+    mv "$file" "${file//coco/xray}"
+done
+```
+
 ## 3. 比赛
 
 [X光安检图像检测挑战赛3.0](https://challenge.xfyun.cn/topic/info?type=Xray-2022)

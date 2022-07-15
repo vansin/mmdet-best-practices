@@ -1,0 +1,5 @@
+_base_ = './faster_rcnn_s50_fpn_syncbn-backbone+head_mstrain-range_1x_xray.py'
+model = dict(backbone=dict(
+    stem_channels=128,
+    depth=101,
+    init_cfg=dict(type='Pretrained', checkpoint='open-mmlab://resnest101')))
