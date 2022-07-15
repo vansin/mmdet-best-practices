@@ -6,7 +6,7 @@ _base_ = [
 model = dict(roi_head=dict(bbox_head=dict(
     _delete_=True,
     type='SABLHead',
-    num_classes=80,
+    num_classes=8,
     cls_in_channels=256,
     reg_in_channels=256,
     roi_feat_size=7,

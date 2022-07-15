@@ -25,7 +25,7 @@ model = dict(
         num_outs=5,
         relu_before_extra_convs=True),
     bbox_head=dict(type='FCOSHead',
-                   num_classes=80,
+                   num_classes=8,
                    in_channels=256,
                    stacked_convs=4,
                    feat_channels=256,

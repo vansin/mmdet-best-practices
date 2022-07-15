@@ -43,16 +43,16 @@ data = dict(samples_per_gpu=2,
                        times=3,
                        dataset=dict(type=dataset_type,
                                     ann_file=data_root + 'train_all.json',
-                                    img_prefix=data_root + 'train/',
+                                    img_prefix=data_root,
                                     pipeline=train_pipeline)),
             val=dict(type=dataset_type,
                      ann_file=data_root + 'val.json',
-                     img_prefix=data_root + 'train/',
+                     img_prefix=data_root,
                      pipeline=test_pipeline),
             test=dict(type=dataset_type,
                       ann_file=data_root +
                       'annotations/instances_val2017.json',
-                      img_prefix=data_root + 'train/',
+                      img_prefix=data_root,
                       pipeline=test_pipeline))
 evaluation = dict(interval=1, metric=['bbox', 'segm'])
 

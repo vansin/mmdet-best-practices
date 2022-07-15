@@ -32,7 +32,7 @@ model = dict(
     ],
     bbox_head=dict(
         type='ATSSHead',
-        num_classes=80,
+        num_classes=8,
         in_channels=256,
         pred_kernel_size=1,  # follow DyHead official implementation
         stacked_convs=0,

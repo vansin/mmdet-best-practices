@@ -12,7 +12,7 @@ model = dict(
               in_channels=[320, 96, 32],
               out_channels=[96, 96, 96]),
     bbox_head=dict(type='YOLOV3Head',
-                   num_classes=80,
+                   num_classes=8,
                    in_channels=[96, 96, 96],
                    out_channels=[96, 96, 96],
                    anchor_generator=dict(type='YOLOAnchorGenerator',
@@ -98,15 +98,15 @@ data = dict(
         times=10,
         dataset=dict(type=dataset_type,
                      ann_file=data_root + 'train_all.json',
-                     img_prefix=data_root + 'train/',
+                     img_prefix=data_root,
                      pipeline=train_pipeline)),
     val=dict(type=dataset_type,
              ann_file=data_root + 'val.json',
-             img_prefix=data_root + 'train/',
+             img_prefix=data_root,
              pipeline=test_pipeline),
     test=dict(type=dataset_type,
               ann_file=data_root + 'val.json',
-              img_prefix=data_root + 'train/',
+              img_prefix=data_root,
               pipeline=test_pipeline))
 # optimizer
 optimizer = dict(type='SGD', lr=0.003, momentum=0.9, weight_decay=0.0005)

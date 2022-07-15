@@ -21,7 +21,7 @@ model = dict(
               add_extra_convs='on_output',
               num_outs=5),
     bbox_head=dict(type='ATSSHead',
-                   num_classes=80,
+                   num_classes=8,
                    in_channels=256,
                    stacked_convs=4,
                    feat_channels=256,

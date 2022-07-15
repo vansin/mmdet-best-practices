@@ -60,15 +60,15 @@ data = dict(
         times=4,  # simply change this from 2 to 16 for 50e - 400e training.
         dataset=dict(type=dataset_type,
                      ann_file=data_root + 'train_all.json',
-                     img_prefix=data_root + 'train/',
+                     img_prefix=data_root,
                      pipeline=train_pipeline)),
     val=dict(type=dataset_type,
              ann_file=data_root + 'val.json',
-             img_prefix=data_root + 'train/',
+             img_prefix=data_root,
              pipeline=test_pipeline),
     test=dict(type=dataset_type,
               ann_file=data_root + 'val.json',
-              img_prefix=data_root + 'train/',
+              img_prefix=data_root,
               pipeline=test_pipeline))
 evaluation = dict(interval=5, metric=['bbox', 'segm'])
 

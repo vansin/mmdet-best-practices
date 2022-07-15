@@ -24,7 +24,7 @@ model = dict(
         num_outs=5,
         relu_before_extra_convs=True),
     bbox_head=dict(type='VFNetHead',
-                   num_classes=80,
+                   num_classes=8,
                    in_channels=256,
                    stacked_convs=3,
                    feat_channels=256,

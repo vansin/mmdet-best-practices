@@ -4,7 +4,7 @@ _base_ = [
 # model settings
 model = dict(mask_head=dict(
     type='DecoupledSOLOHead',
-    num_classes=80,
+    num_classes=8,
     in_channels=256,
     stacked_convs=7,
     feat_channels=256,

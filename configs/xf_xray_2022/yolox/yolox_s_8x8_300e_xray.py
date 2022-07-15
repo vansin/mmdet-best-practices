@@ -14,7 +14,7 @@ model = dict(
               out_channels=128,
               num_csp_blocks=1),
     bbox_head=dict(type='YOLOXHead',
-                   num_classes=80,
+                   num_classes=8,
                    in_channels=128,
                    feat_channels=128),
     train_cfg=dict(assigner=dict(type='SimOTAAssigner', center_radius=2.5)),
@@ -56,7 +56,7 @@ train_dataset = dict(type='MultiImageMixDataset',
                      dataset=dict(
                          type=dataset_type,
                          ann_file=data_root + 'train_all.json',
-                         img_prefix=data_root + 'train/',
+                         img_prefix=data_root,
                          pipeline=[
                              dict(type='LoadImageFromFile'),
                              dict(type='LoadAnnotations', with_bbox=True)
@@ -87,12 +87,12 @@ data = dict(samples_per_gpu=8,
             train=train_dataset,
             val=dict(type=dataset_type,
                      ann_file=data_root + 'val.json',
-                     img_prefix=data_root + 'train/',
+                     img_prefix=data_root,
                      pipeline=test_pipeline),
             test=dict(type=dataset_type,
                       ann_file=data_root +
                       'annotations/instances_val2017.json',
-                      img_prefix=data_root + 'train/',
+                      img_prefix=data_root,
                       pipeline=test_pipeline))
 
 # optimizer

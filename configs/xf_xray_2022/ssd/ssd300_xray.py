@@ -46,7 +46,7 @@ data = dict(samples_per_gpu=8,
                        times=5,
                        dataset=dict(type=dataset_type,
                                     ann_file=data_root + 'train_all.json',
-                                    img_prefix=data_root + 'train/',
+                                    img_prefix=data_root,
                                     pipeline=train_pipeline)),
             val=dict(pipeline=test_pipeline),
             test=dict(pipeline=test_pipeline))

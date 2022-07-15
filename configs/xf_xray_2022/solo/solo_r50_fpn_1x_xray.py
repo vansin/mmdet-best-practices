@@ -20,7 +20,7 @@ model = dict(
               start_level=0,
               num_outs=5),
     mask_head=dict(type='SOLOHead',
-                   num_classes=80,
+                   num_classes=8,
                    in_channels=256,
                    stacked_convs=7,
                    feat_channels=256,

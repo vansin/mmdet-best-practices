@@ -21,7 +21,7 @@ model = dict(
     bbox_head=dict(
         type='SSDHead',
         in_channels=(96, 1280, 512, 256, 256, 128),
-        num_classes=80,
+        num_classes=8,
         use_depthwise=True,
         norm_cfg=dict(type='BN', eps=0.001, momentum=0.03),
         act_cfg=dict(type='ReLU6'),
@@ -108,7 +108,7 @@ data = dict(
         times=5,
         dataset=dict(type=dataset_type,
                      ann_file=data_root + 'train_all.json',
-                     img_prefix=data_root + 'train/',
+                     img_prefix=data_root,
                      pipeline=train_pipeline)),
     val=dict(pipeline=test_pipeline),
     test=dict(pipeline=test_pipeline))

@@ -19,8 +19,8 @@ label_ids = {name: i for i, name in enumerate(dataset_classes())}
 
 
 def parse_xml(args):
-    xml_path, img_path, valid_img_path = args
-    tree = ET.parse(xml_path)
+    xml_path, img_path, data_root, valid_img_path = args
+    tree = ET.parse(data_root + xml_path)
     root = tree.getroot()
     size = root.find('size')
     w = int(size.find('width').text)
@@ -75,6 +75,7 @@ def parse_xml(args):
 
 def cvt_annotations(xml_dirs,
                     out_ann_file,
+                    data_root,
                     out_valid_img_dir,
                     every_n_num_img_save=1):
 
@@ -83,12 +84,13 @@ def cvt_annotations(xml_dirs,
     xml_paths = []
     img_paths = []
     valid_img_paths = []
+    data_roots = []
 
     cout_nums = 0
 
     for xml_dir in xml_dirs:
 
-        xmls = os.listdir(xml_dir)
+        xmls = os.listdir(data_root + xml_dir)
 
         for item in xmls:
             if '.xml' in item:
@@ -118,9 +120,11 @@ def cvt_annotations(xml_dirs,
                 else:
                     print(item)
                     break
+                data_roots.append(data_root)
 
     part_annotations = mmcv.track_progress(
-        parse_xml, list(zip(xml_paths, img_paths, valid_img_paths)))
+        parse_xml, list(zip(xml_paths, img_paths, data_roots,
+                            valid_img_paths)))
     annotations.extend(part_annotations)
 
     if out_ann_file.endswith('json'):
@@ -235,22 +239,20 @@ def parse_args():
 
 def main():
 
+    data_root = 'data/xray-2022/'
     # 设置所有训练集
-    xml_path = [
-        'data/xray-2022/train/domain1', 'data/xray-2022/train/domain2',
-        'data/xray-2022/train/domain3'
-    ]
-    json_out_path = 'data/xray-2022/train_all.json'
-    cvt_annotations(xml_path, json_out_path, out_valid_img_dir='data/valid')
-
-    # 筛选除验证集
-    xml_path = [
-        'data/xray-2022/train/domain1', 'data/xray-2022/train/domain2',
-        'data/xray-2022/train/domain3'
-    ]
-    json_out_path = 'data/xray-2022/val.json'
+    xml_path = ['train/domain1', 'train/domain2', 'train/domain3']
+    json_out_path = data_root + 'train_all.json'
     cvt_annotations(xml_path,
                     json_out_path,
+                    data_root=data_root,
+                    out_valid_img_dir='data/valid')
+
+    xml_path = ['train/domain1', 'train/domain2', 'train/domain3']
+    json_out_path = data_root + 'val.json'
+    cvt_annotations(xml_path,
+                    json_out_path,
+                    data_root=data_root,
                     out_valid_img_dir='data/valid',
                     every_n_num_img_save=10)
 

@@ -50,7 +50,7 @@ data = dict(train=dict(
     times=3,
     dataset=dict(type=dataset_type,
                  ann_file=data_root + 'annotations/panoptic_train2017.json',
-                 img_prefix=data_root + 'train/',
+                 img_prefix=data_root,
                  seg_prefix=data_root + 'annotations/panoptic_train2017/',
                  pipeline=train_pipeline)),
             val=dict(pipeline=test_pipeline),
