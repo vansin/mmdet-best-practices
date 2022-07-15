@@ -1,6 +1,6 @@
 # dataset settings
-dataset_type = 'CocoDataset'
-data_root = 'data/xray/'
+dataset_type = 'XrayDataset'
+data_root = 'data/xray-2022/'
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53],
                     std=[58.395, 57.12, 57.375],
                     to_rgb=True)
@@ -32,20 +32,19 @@ test_pipeline = [
              dict(type='Collect', keys=['img']),
          ])
 ]
-data = dict(
-    samples_per_gpu=2,
-    workers_per_gpu=2,
-    train=dict(type=dataset_type,
-               ann_file=data_root + 'annotations/instances_train2017.json',
-               img_prefix=data_root + 'train2017/',
-               seg_prefix=data_root + 'stuffthingmaps/train2017/',
-               pipeline=train_pipeline),
-    val=dict(type=dataset_type,
-             ann_file=data_root + 'annotations/instances_val2017.json',
-             img_prefix=data_root + 'val2017/',
-             pipeline=test_pipeline),
-    test=dict(type=dataset_type,
-              ann_file=data_root + 'annotations/instances_val2017.json',
-              img_prefix=data_root + 'val2017/',
-              pipeline=test_pipeline))
+data = dict(samples_per_gpu=2,
+            workers_per_gpu=2,
+            train=dict(type=dataset_type,
+                       ann_file=data_root + 'train_all.json',
+                       img_prefix=data_root + 'train/',
+                       seg_prefix=data_root + 'stuffthingmaps/train2017/',
+                       pipeline=train_pipeline),
+            val=dict(type=dataset_type,
+                     ann_file=data_root + 'val.json',
+                     img_prefix=data_root + 'train/',
+                     pipeline=test_pipeline),
+            test=dict(type=dataset_type,
+                      ann_file=data_root + 'val.json',
+                      img_prefix=data_root + 'train/',
+                      pipeline=test_pipeline))
 evaluation = dict(metric=['bbox', 'segm'])

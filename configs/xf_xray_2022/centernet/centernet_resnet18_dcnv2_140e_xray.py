@@ -79,8 +79,8 @@ test_pipeline = [
          ])
 ]
 
-dataset_type = 'CocoDataset'
-data_root = 'data/xray/'
+dataset_type = 'XrayDataset'
+data_root = 'data/xray-2022/'
 
 # Use RepeatDataset to speed up training
 data = dict(samples_per_gpu=16,
@@ -89,9 +89,8 @@ data = dict(samples_per_gpu=16,
                        type='RepeatDataset',
                        times=5,
                        dataset=dict(type=dataset_type,
-                                    ann_file=data_root +
-                                    'annotations/instances_train2017.json',
-                                    img_prefix=data_root + 'train2017/',
+                                    ann_file=data_root + 'train_all.json',
+                                    img_prefix=data_root + 'train/',
                                     pipeline=train_pipeline)),
             val=dict(pipeline=test_pipeline),
             test=dict(pipeline=test_pipeline))

@@ -13,8 +13,8 @@ data = dict(samples_per_gpu=2,
                                     img_prefix=data_root + 'train2017/')),
             val=dict(type=dataset_type,
                      ann_file=data_root + 'annotations/lvis_v0.5_val.json',
-                     img_prefix=data_root + 'val2017/'),
+                     img_prefix=data_root + 'train/'),
             test=dict(type=dataset_type,
                       ann_file=data_root + 'annotations/lvis_v0.5_val.json',
-                      img_prefix=data_root + 'val2017/'))
+                      img_prefix=data_root + 'train/'))
 evaluation = dict(metric=['bbox', 'segm'])

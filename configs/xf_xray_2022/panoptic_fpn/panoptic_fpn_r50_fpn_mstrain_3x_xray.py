@@ -2,7 +2,7 @@ _base_ = './panoptic_fpn_r50_fpn_1x_xray.py'
 
 # dataset settings
 dataset_type = 'CocoPanopticDataset'
-data_root = 'data/xray/'
+data_root = 'data/xray-2022/'
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53],
                     std=[58.395, 57.12, 57.375],
                     to_rgb=True)
@@ -50,7 +50,7 @@ data = dict(train=dict(
     times=3,
     dataset=dict(type=dataset_type,
                  ann_file=data_root + 'annotations/panoptic_train2017.json',
-                 img_prefix=data_root + 'train2017/',
+                 img_prefix=data_root + 'train/',
                  seg_prefix=data_root + 'annotations/panoptic_train2017/',
                  pipeline=train_pipeline)),
             val=dict(pipeline=test_pipeline),

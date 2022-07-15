@@ -53,8 +53,8 @@ model = dict(
                   max_per_img=100))
 
 # data setting
-dataset_type = 'CocoDataset'
-data_root = 'data/xray/'
+dataset_type = 'XrayDataset'
+data_root = 'data/xray-2022/'
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53],
                     std=[58.395, 57.12, 57.375],
                     to_rgb=True)

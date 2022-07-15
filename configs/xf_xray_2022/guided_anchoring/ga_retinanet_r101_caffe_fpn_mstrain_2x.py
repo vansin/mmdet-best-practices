@@ -84,8 +84,8 @@ test_cfg = dict(nms_pre=1000,
                 nms=dict(type='nms', iou_threshold=0.5),
                 max_per_img=100)
 # dataset settings
-dataset_type = 'CocoDataset'
-data_root = 'data/xray/'
+dataset_type = 'XrayDataset'
+data_root = 'data/xray-2022/'
 img_norm_cfg = dict(mean=[103.530, 116.280, 123.675],
                     std=[1.0, 1.0, 1.0],
                     to_rgb=False)
@@ -116,21 +116,20 @@ test_pipeline = [
              dict(type='Collect', keys=['img']),
          ])
 ]
-data = dict(
-    samples_per_gpu=2,
-    workers_per_gpu=2,
-    train=dict(type=dataset_type,
-               ann_file=data_root + 'annotations/instances_train2017.json',
-               img_prefix=data_root + 'train2017/',
-               pipeline=train_pipeline),
-    val=dict(type=dataset_type,
-             ann_file=data_root + 'annotations/instances_val2017.json',
-             img_prefix=data_root + 'val2017/',
-             pipeline=test_pipeline),
-    test=dict(type=dataset_type,
-              ann_file=data_root + 'annotations/instances_val2017.json',
-              img_prefix=data_root + 'val2017/',
-              pipeline=test_pipeline))
+data = dict(samples_per_gpu=2,
+            workers_per_gpu=2,
+            train=dict(type=dataset_type,
+                       ann_file=data_root + 'train_all.json',
+                       img_prefix=data_root + 'train/',
+                       pipeline=train_pipeline),
+            val=dict(type=dataset_type,
+                     ann_file=data_root + 'val.json',
+                     img_prefix=data_root + 'train/',
+                     pipeline=test_pipeline),
+            test=dict(type=dataset_type,
+                      ann_file=data_root + 'val.json',
+                      img_prefix=data_root + 'train/',
+                      pipeline=test_pipeline))
 evaluation = dict(interval=1, metric='bbox')
 # optimizer
 optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)

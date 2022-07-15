@@ -16,8 +16,8 @@ model = dict(bbox_head=dict(
                     target_means=[.0, .0, .0, .0],
                     target_stds=[0.1, 0.1, 0.2, 0.2])))
 # dataset settings
-dataset_type = 'CocoDataset'
-data_root = 'data/xray/'
+dataset_type = 'XrayDataset'
+data_root = 'data/xray-2022/'
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53], std=[1, 1, 1], to_rgb=True)
 train_pipeline = [
     dict(type='LoadImageFromFile', to_float32=True),
@@ -58,9 +58,8 @@ data = dict(samples_per_gpu=8,
                        type='RepeatDataset',
                        times=5,
                        dataset=dict(type=dataset_type,
-                                    ann_file=data_root +
-                                    'annotations/instances_train2017.json',
-                                    img_prefix=data_root + 'train2017/',
+                                    ann_file=data_root + 'train_all.json',
+                                    img_prefix=data_root + 'train/',
                                     pipeline=train_pipeline)),
             val=dict(pipeline=test_pipeline),
             test=dict(pipeline=test_pipeline))

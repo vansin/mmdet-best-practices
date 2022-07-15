@@ -80,8 +80,8 @@ model = dict(
                   top_k=200,
                   max_per_img=100))
 # dataset settings
-dataset_type = 'CocoDataset'
-data_root = 'data/xray/'
+dataset_type = 'XrayDataset'
+data_root = 'data/xray-2022/'
 img_norm_cfg = dict(mean=[123.68, 116.78, 103.94],
                     std=[58.40, 57.12, 57.38],
                     to_rgb=True)
@@ -119,21 +119,20 @@ test_pipeline = [
              dict(type='Collect', keys=['img']),
          ])
 ]
-data = dict(
-    samples_per_gpu=8,
-    workers_per_gpu=4,
-    train=dict(type=dataset_type,
-               ann_file=data_root + 'annotations/instances_train2017.json',
-               img_prefix=data_root + 'train2017/',
-               pipeline=train_pipeline),
-    val=dict(type=dataset_type,
-             ann_file=data_root + 'annotations/instances_val2017.json',
-             img_prefix=data_root + 'val2017/',
-             pipeline=test_pipeline),
-    test=dict(type=dataset_type,
-              ann_file=data_root + 'annotations/instances_val2017.json',
-              img_prefix=data_root + 'val2017/',
-              pipeline=test_pipeline))
+data = dict(samples_per_gpu=8,
+            workers_per_gpu=4,
+            train=dict(type=dataset_type,
+                       ann_file=data_root + 'train_all.json',
+                       img_prefix=data_root + 'train/',
+                       pipeline=train_pipeline),
+            val=dict(type=dataset_type,
+                     ann_file=data_root + 'val.json',
+                     img_prefix=data_root + 'train/',
+                     pipeline=test_pipeline),
+            test=dict(type=dataset_type,
+                      ann_file=data_root + 'val.json',
+                      img_prefix=data_root + 'train/',
+                      pipeline=test_pipeline))
 # optimizer
 optimizer = dict(type='SGD', lr=1e-3, momentum=0.9, weight_decay=5e-4)
 optimizer_config = dict()

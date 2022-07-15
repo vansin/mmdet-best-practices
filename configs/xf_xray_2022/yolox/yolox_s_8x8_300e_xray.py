@@ -23,8 +23,8 @@ model = dict(
     test_cfg=dict(score_thr=0.01, nms=dict(type='nms', iou_threshold=0.65)))
 
 # dataset settings
-data_root = 'data/xray/'
-dataset_type = 'CocoDataset'
+data_root = 'data/xray-2022/'
+dataset_type = 'XrayDataset'
 
 train_pipeline = [
     dict(type='Mosaic', img_scale=img_scale, pad_val=114.0),
@@ -55,9 +55,8 @@ train_pipeline = [
 train_dataset = dict(type='MultiImageMixDataset',
                      dataset=dict(
                          type=dataset_type,
-                         ann_file=data_root +
-                         'annotations/instances_train2017.json',
-                         img_prefix=data_root + 'train2017/',
+                         ann_file=data_root + 'train_all.json',
+                         img_prefix=data_root + 'train/',
                          pipeline=[
                              dict(type='LoadImageFromFile'),
                              dict(type='LoadAnnotations', with_bbox=True)
@@ -87,13 +86,13 @@ data = dict(samples_per_gpu=8,
             persistent_workers=True,
             train=train_dataset,
             val=dict(type=dataset_type,
-                     ann_file=data_root + 'annotations/instances_val2017.json',
-                     img_prefix=data_root + 'val2017/',
+                     ann_file=data_root + 'val.json',
+                     img_prefix=data_root + 'train/',
                      pipeline=test_pipeline),
             test=dict(type=dataset_type,
                       ann_file=data_root +
                       'annotations/instances_val2017.json',
-                      img_prefix=data_root + 'val2017/',
+                      img_prefix=data_root + 'train/',
                       pipeline=test_pipeline))
 
 # optimizer
