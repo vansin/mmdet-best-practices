@@ -88,7 +88,7 @@ done
 
 ### 3.1 [X光安检图像检测挑战赛3.0](https://challenge.xfyun.cn/topic/info?type=Xray-2022)
 
-已经整理好的数据集链接: https://pan.baidu.com/s/1C0luFgCyv_uxVAk3g1ruow 提取码: xray
+<!-- 已经整理好的数据集链接: https://pan.baidu.com/s/1C0luFgCyv_uxVAk3g1ruow 提取码: xray -->
 
 ![](https://moonstarimg.oss-cn-hangzhou.aliyuncs.com/000008.jpg)
 
