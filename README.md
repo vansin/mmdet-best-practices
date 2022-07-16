@@ -88,7 +88,7 @@ pre-commit install
 
 https://opendatalab.com/PASCAL_VOC2007/download
 
-可以参考[PASCAL VOC2007数据集准备教程](docs/datasets/pascalvoc_2007.md)，我们会议PASCAL VOC2007数据集为载体，死磕MMDet源码。
+可以参考[PASCAL VOC2007数据集准备教程](docs/datasets/pascalvoc_2007.md)准备好调试MMDet所需要的数据集，我们会以PASCAL VOC2007数据集为载体，死磕MMDet源码。
 
 ### COCO 2017
 
