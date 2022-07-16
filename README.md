@@ -25,9 +25,14 @@ conda activate mmdet-bp
 
 ### 安装PyTorch
 
+conda安装pytorch
 ```shell
-conda activate mmdet-bp
 conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
+```
+
+pip安装pytoch(可能会快一点)
+```shell
+pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113
 ```
 
 ### 安装mmcv
