@@ -82,13 +82,17 @@ pre-commit install
 
 ## 2. 数据集
 
-### 重命名config
+### PASCAL VOC2007
 
-```shell
-find . -type f -name "*coco*" -print0 | while read -r -d '' file; do
-    mv "$file" "${file//coco/xray}"
-done
-```
+小数据集非常适合学习，适合没有GPU和只有一张GPU的用户深入学习目标检测
+
+https://opendatalab.com/PASCAL_VOC2007/download
+
+[PASCAL VOC2007转COCO格式](docs/datasets/pascalvoc_2007.md)
+
+### COCO 2017
+
+如果你有比较充足的算力的话可以在COCO数据集上进行学习。
 
 ## 3. 比赛
 
