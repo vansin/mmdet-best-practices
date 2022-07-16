@@ -19,7 +19,7 @@ from terminaltables import AsciiTable
 
 
 @DATASETS.register_module()
-class VOC2007Dataset(CustomDataset):
+class VOC2007CocoDataset(CustomDataset):
 
     CLASSES = ('aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car',
                'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse',
