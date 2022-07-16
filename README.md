@@ -88,7 +88,7 @@ pre-commit install
 
 https://opendatalab.com/PASCAL_VOC2007/download
 
-[PASCAL VOC2007转COCO格式](docs/datasets/pascalvoc_2007.md)
+可以参考[PASCAL VOC2007数据集准备教程](docs/datasets/pascalvoc_2007.md)，我们会议PASCAL VOC2007数据集为载体，死磕MMDet源码。
 
 ### COCO 2017
 
