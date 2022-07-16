@@ -21,7 +21,7 @@ model = dict(
               add_extra_convs=True,
               num_outs=5),
     bbox_head=dict(type='GARetinaHead',
-                   num_classes=80,
+                   num_classes=20,
                    in_channels=256,
                    stacked_convs=4,
                    feat_channels=256,
@@ -84,8 +84,8 @@ test_cfg = dict(nms_pre=1000,
                 nms=dict(type='nms', iou_threshold=0.5),
                 max_per_img=100)
 # dataset settings
-dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+dataset_type = 'VOC2007CocoDataset'
+data_root = 'data/'
 img_norm_cfg = dict(mean=[103.530, 116.280, 123.675],
                     std=[1.0, 1.0, 1.0],
                     to_rgb=False)
@@ -116,21 +116,20 @@ test_pipeline = [
              dict(type='Collect', keys=['img']),
          ])
 ]
-data = dict(
-    samples_per_gpu=2,
-    workers_per_gpu=2,
-    train=dict(type=dataset_type,
-               ann_file=data_root + 'annotations/instances_train2017.json',
-               img_prefix=data_root + 'train2017/',
-               pipeline=train_pipeline),
-    val=dict(type=dataset_type,
-             ann_file=data_root + 'annotations/instances_val2017.json',
-             img_prefix=data_root + 'val2017/',
-             pipeline=test_pipeline),
-    test=dict(type=dataset_type,
-              ann_file=data_root + 'annotations/instances_val2017.json',
-              img_prefix=data_root + 'val2017/',
-              pipeline=test_pipeline))
+data = dict(samples_per_gpu=2,
+            workers_per_gpu=2,
+            train=dict(type=dataset_type,
+                       ann_file=data_root + 'VOC2007/voc07_train.json',
+                       img_prefix=data_root,
+                       pipeline=train_pipeline),
+            val=dict(type=dataset_type,
+                     ann_file=data_root + 'VOC2007/voc07_test.json',
+                     img_prefix=data_root,
+                     pipeline=test_pipeline),
+            test=dict(type=dataset_type,
+                      ann_file=data_root + 'VOC2007/voc07_test.json',
+                      img_prefix=data_root,
+                      pipeline=test_pipeline))
 evaluation = dict(interval=1, metric='bbox')
 # optimizer
 optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)

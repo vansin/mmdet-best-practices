@@ -43,7 +43,7 @@ model = dict(
                                           featmap_strides=[4, 8, 16, 32]),
                   bbox_head=[
                       dict(type='DIIHead',
-                           num_classes=80,
+                           num_classes=20,
                            num_ffn_fcs=2,
                            num_heads=8,
                            num_cls_fcs=1,
@@ -85,7 +85,7 @@ model = dict(
                                                               inplace=True),
                                                  norm_cfg=dict(type='LN')),
                            num_convs=4,
-                           num_classes=80,
+                           num_classes=20,
                            roi_feat_size=14,
                            in_channels=256,
                            conv_kernel_size=3,

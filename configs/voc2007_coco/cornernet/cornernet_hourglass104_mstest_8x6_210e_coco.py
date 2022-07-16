@@ -13,7 +13,7 @@ model = dict(
                   norm_cfg=dict(type='BN', requires_grad=True)),
     neck=None,
     bbox_head=dict(type='CornerHead',
-                   num_classes=80,
+                   num_classes=20,
                    in_channels=256,
                    num_feat_levels=2,
                    corner_emb_channels=1,

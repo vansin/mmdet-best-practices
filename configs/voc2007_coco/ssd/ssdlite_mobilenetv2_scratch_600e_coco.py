@@ -21,7 +21,7 @@ model = dict(
     bbox_head=dict(
         type='SSDHead',
         in_channels=(96, 1280, 512, 256, 256, 128),
-        num_classes=80,
+        num_classes=20,
         use_depthwise=True,
         norm_cfg=dict(type='BN', eps=0.001, momentum=0.03),
         act_cfg=dict(type='ReLU6'),
@@ -59,8 +59,8 @@ model = dict(
 cudnn_benchmark = True
 
 # dataset settings
-dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+dataset_type = 'VOC2007CocoDataset'
+data_root = 'data/'
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53],
                     std=[58.395, 57.12, 57.375],
                     to_rgb=True)
@@ -109,7 +109,7 @@ data = dict(
         dataset=dict(type=dataset_type,
                      ann_file=data_root +
                      'annotations/instances_train2017.json',
-                     img_prefix=data_root + 'train2017/',
+                     img_prefix=data_root,
                      pipeline=train_pipeline)),
     val=dict(pipeline=test_pipeline),
     test=dict(pipeline=test_pipeline))

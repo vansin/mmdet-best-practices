@@ -21,7 +21,7 @@ model = dict(
               add_extra_convs='on_input',
               num_outs=5),
     bbox_head=dict(type='RepPointsHead',
-                   num_classes=80,
+                   num_classes=20,
                    in_channels=256,
                    feat_channels=256,
                    point_feat_channels=256,

@@ -16,7 +16,7 @@ model = dict(type='CenterNet',
                        num_deconv_kernels=(4, 4, 4),
                        use_dcn=True),
              bbox_head=dict(type='CenterNetHead',
-                            num_classes=80,
+                            num_classes=20,
                             in_channel=64,
                             feat_channel=64,
                             loss_center_heatmap=dict(type='GaussianFocalLoss',
@@ -79,8 +79,8 @@ test_pipeline = [
          ])
 ]
 
-dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+dataset_type = 'VOC2007CocoDataset'
+data_root = 'data/'
 
 # Use RepeatDataset to speed up training
 data = dict(samples_per_gpu=16,
@@ -91,7 +91,7 @@ data = dict(samples_per_gpu=16,
                        dataset=dict(type=dataset_type,
                                     ann_file=data_root +
                                     'annotations/instances_train2017.json',
-                                    img_prefix=data_root + 'train2017/',
+                                    img_prefix=data_root,
                                     pipeline=train_pipeline)),
             val=dict(pipeline=test_pipeline),
             test=dict(pipeline=test_pipeline))

@@ -12,7 +12,7 @@ model = dict(
               in_channels=[320, 96, 32],
               out_channels=[96, 96, 96]),
     bbox_head=dict(type='YOLOV3Head',
-                   num_classes=80,
+                   num_classes=20,
                    in_channels=[96, 96, 96],
                    out_channels=[96, 96, 96],
                    anchor_generator=dict(type='YOLOAnchorGenerator',
@@ -50,8 +50,8 @@ model = dict(
                   nms=dict(type='nms', iou_threshold=0.45),
                   max_per_img=100))
 # dataset settings
-dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+dataset_type = 'VOC2007CocoDataset'
+data_root = 'data/'
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53],
                     std=[58.395, 57.12, 57.375],
                     to_rgb=True)
@@ -99,15 +99,15 @@ data = dict(
         dataset=dict(type=dataset_type,
                      ann_file=data_root +
                      'annotations/instances_train2017.json',
-                     img_prefix=data_root + 'train2017/',
+                     img_prefix=data_root,
                      pipeline=train_pipeline)),
     val=dict(type=dataset_type,
-             ann_file=data_root + 'annotations/instances_val2017.json',
-             img_prefix=data_root + 'val2017/',
+             ann_file=data_root + 'VOC2007/voc07_test.json',
+             img_prefix=data_root,
              pipeline=test_pipeline),
     test=dict(type=dataset_type,
-              ann_file=data_root + 'annotations/instances_val2017.json',
-              img_prefix=data_root + 'val2017/',
+              ann_file=data_root + 'VOC2007/voc07_test.json',
+              img_prefix=data_root,
               pipeline=test_pipeline))
 # optimizer
 optimizer = dict(type='SGD', lr=0.003, momentum=0.9, weight_decay=0.0005)

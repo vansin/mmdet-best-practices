@@ -5,7 +5,7 @@ model = dict(roi_head=dict(
                    in_channels=256,
                    fc_out_channels=1024,
                    roi_feat_size=7,
-                   num_classes=80,
+                   num_classes=20,
                    bbox_coder=dict(type='DeltaXYWHBBoxCoder',
                                    target_means=[0., 0., 0., 0.],
                                    target_stds=[0.1, 0.1, 0.2, 0.2]),

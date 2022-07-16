@@ -22,7 +22,7 @@ model = dict(
               num_residual_blocks=4,
               block_dilations=[2, 4, 6, 8]),
     bbox_head=dict(type='YOLOFHead',
-                   num_classes=80,
+                   num_classes=20,
                    in_channels=512,
                    reg_decoded_bbox=True,
                    anchor_generator=dict(type='AnchorGenerator',

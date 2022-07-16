@@ -22,7 +22,7 @@ model = dict(
               num_outs=5,
               add_extra_convs='on_input'),
     bbox_head=dict(type='FoveaHead',
-                   num_classes=80,
+                   num_classes=20,
                    in_channels=256,
                    stacked_convs=4,
                    feat_channels=256,

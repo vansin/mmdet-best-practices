@@ -31,8 +31,8 @@ model = dict(
                                       floor_fraction=0,
                                       num_bins=3)))))
 # dataset settings
-dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+dataset_type = 'VOC2007CocoDataset'
+data_root = 'data/'
 data = dict(train=dict(proposal_file=data_root +
                        'libra_proposals/rpn_r50_fpn_1x_train2017.pkl'),
             val=dict(proposal_file=data_root +

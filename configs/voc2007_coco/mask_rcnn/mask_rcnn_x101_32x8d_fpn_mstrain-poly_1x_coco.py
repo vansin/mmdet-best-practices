@@ -12,8 +12,8 @@ model = dict(backbone=dict(
     init_cfg=dict(type='Pretrained',
                   checkpoint='open-mmlab://detectron2/resnext101_32x8d')))
 
-dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+dataset_type = 'VOC2007CocoDataset'
+data_root = 'data/'
 img_norm_cfg = dict(mean=[103.530, 116.280, 123.675],
                     std=[57.375, 57.120, 58.395],
                     to_rgb=False)

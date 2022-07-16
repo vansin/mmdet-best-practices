@@ -2,7 +2,7 @@ _base_ = '../retinanet/retinanet_r50_caffe_fpn_1x_coco.py'
 model = dict(
     bbox_head=dict(_delete_=True,
                    type='GARetinaHead',
-                   num_classes=80,
+                   num_classes=20,
                    in_channels=256,
                    stacked_convs=4,
                    feat_channels=256,

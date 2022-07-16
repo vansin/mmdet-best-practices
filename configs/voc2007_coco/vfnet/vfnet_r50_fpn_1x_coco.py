@@ -24,7 +24,7 @@ model = dict(
         num_outs=5,
         relu_before_extra_convs=True),
     bbox_head=dict(type='VFNetHead',
-                   num_classes=80,
+                   num_classes=20,
                    in_channels=256,
                    stacked_convs=3,
                    feat_channels=256,
@@ -53,8 +53,8 @@ model = dict(
                   max_per_img=100))
 
 # data setting
-dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+dataset_type = 'VOC2007CocoDataset'
+data_root = 'data/'
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53],
                     std=[58.395, 57.12, 57.375],
                     to_rgb=True)

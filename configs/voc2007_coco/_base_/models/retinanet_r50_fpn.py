@@ -18,7 +18,7 @@ model = dict(
               add_extra_convs='on_input',
               num_outs=5),
     bbox_head=dict(type='RetinaHead',
-                   num_classes=80,
+                   num_classes=20,
                    in_channels=256,
                    stacked_convs=4,
                    feat_channels=256,

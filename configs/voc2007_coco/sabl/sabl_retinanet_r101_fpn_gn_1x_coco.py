@@ -11,7 +11,7 @@ model = dict(
                                 checkpoint='torchvision://resnet101')),
     bbox_head=dict(_delete_=True,
                    type='SABLRetinaHead',
-                   num_classes=80,
+                   num_classes=20,
                    in_channels=256,
                    stacked_convs=4,
                    feat_channels=256,

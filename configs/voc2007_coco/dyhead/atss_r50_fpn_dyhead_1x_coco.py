@@ -24,7 +24,7 @@ model = dict(
         dict(type='DyHead', in_channels=256, out_channels=256, num_blocks=6)
     ],
     bbox_head=dict(type='ATSSHead',
-                   num_classes=80,
+                   num_classes=20,
                    in_channels=256,
                    stacked_convs=0,
                    feat_channels=256,

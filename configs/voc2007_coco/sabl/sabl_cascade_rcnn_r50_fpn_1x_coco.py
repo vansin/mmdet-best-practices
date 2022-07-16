@@ -6,7 +6,7 @@ _base_ = [
 # model settings
 model = dict(roi_head=dict(bbox_head=[
     dict(type='SABLHead',
-         num_classes=80,
+         num_classes=20,
          cls_in_channels=256,
          reg_in_channels=256,
          roi_feat_size=7,
@@ -30,7 +30,7 @@ model = dict(roi_head=dict(bbox_head=[
              type='CrossEntropyLoss', use_sigmoid=True, loss_weight=1.0),
          loss_bbox_reg=dict(type='SmoothL1Loss', beta=0.1, loss_weight=1.0)),
     dict(type='SABLHead',
-         num_classes=80,
+         num_classes=20,
          cls_in_channels=256,
          reg_in_channels=256,
          roi_feat_size=7,
@@ -54,7 +54,7 @@ model = dict(roi_head=dict(bbox_head=[
              type='CrossEntropyLoss', use_sigmoid=True, loss_weight=1.0),
          loss_bbox_reg=dict(type='SmoothL1Loss', beta=0.1, loss_weight=1.0)),
     dict(type='SABLHead',
-         num_classes=80,
+         num_classes=20,
          cls_in_channels=256,
          reg_in_channels=256,
          roi_feat_size=7,

@@ -14,7 +14,7 @@ model = dict(
               out_channels=128,
               num_csp_blocks=1),
     bbox_head=dict(type='YOLOXHead',
-                   num_classes=80,
+                   num_classes=20,
                    in_channels=128,
                    feat_channels=128),
     train_cfg=dict(assigner=dict(type='SimOTAAssigner', center_radius=2.5)),
@@ -23,8 +23,8 @@ model = dict(
     test_cfg=dict(score_thr=0.01, nms=dict(type='nms', iou_threshold=0.65)))
 
 # dataset settings
-data_root = 'data/coco/'
-dataset_type = 'CocoDataset'
+data_root = 'data/'
+dataset_type = 'VOC2007CocoDataset'
 
 train_pipeline = [
     dict(type='Mosaic', img_scale=img_scale, pad_val=114.0),
@@ -57,7 +57,7 @@ train_dataset = dict(type='MultiImageMixDataset',
                          type=dataset_type,
                          ann_file=data_root +
                          'annotations/instances_train2017.json',
-                         img_prefix=data_root + 'train2017/',
+                         img_prefix=data_root,
                          pipeline=[
                              dict(type='LoadImageFromFile'),
                              dict(type='LoadAnnotations', with_bbox=True)
@@ -87,13 +87,13 @@ data = dict(samples_per_gpu=8,
             persistent_workers=True,
             train=train_dataset,
             val=dict(type=dataset_type,
-                     ann_file=data_root + 'annotations/instances_val2017.json',
-                     img_prefix=data_root + 'val2017/',
+                     ann_file=data_root + 'VOC2007/voc07_test.json',
+                     img_prefix=data_root,
                      pipeline=test_pipeline),
             test=dict(type=dataset_type,
                       ann_file=data_root +
                       'annotations/instances_val2017.json',
-                      img_prefix=data_root + 'val2017/',
+                      img_prefix=data_root,
                       pipeline=test_pipeline))
 
 # optimizer

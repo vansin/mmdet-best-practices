@@ -21,8 +21,8 @@ model = dict(
         pos_iou_thr=0.65, neg_iou_thr=0.65, min_pos_iou=0.65),
                              sampler=dict(num=256))),
     test_cfg=dict(rcnn=dict(score_thr=1e-3)))
-dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+dataset_type = 'VOC2007CocoDataset'
+data_root = 'data/'
 img_norm_cfg = dict(mean=[103.530, 116.280, 123.675],
                     std=[1.0, 1.0, 1.0],
                     to_rgb=False)

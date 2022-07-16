@@ -7,8 +7,8 @@ norm_cfg = dict(type='BN', requires_grad=True)
 model = dict(backbone=dict(norm_cfg=norm_cfg, norm_eval=False),
              neck=dict(norm_cfg=norm_cfg),
              roi_head=dict(bbox_head=dict(norm_cfg=norm_cfg)))
-dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+dataset_type = 'VOC2007CocoDataset'
+data_root = 'data/'
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53],
                     std=[58.395, 57.12, 57.375],
                     to_rgb=True)

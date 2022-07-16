@@ -12,8 +12,8 @@ model = dict(backbone=dict(
     init_cfg=dict(type='Pretrained',
                   checkpoint='open-mmlab://detectron2/resnext101_32x8d')))
 
-dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+dataset_type = 'VOC2007CocoDataset'
+data_root = 'data/'
 img_norm_cfg = dict(mean=[103.530, 116.280, 123.675],
                     std=[57.375, 57.120, 58.395],
                     to_rgb=False)
@@ -41,18 +41,17 @@ test_pipeline = [
              dict(type='Collect', keys=['img']),
          ])
 ]
-data = dict(
-    samples_per_gpu=2,
-    workers_per_gpu=2,
-    train=dict(type=dataset_type,
-               ann_file=data_root + 'annotations/instances_train2017.json',
-               img_prefix=data_root + 'train2017/',
-               pipeline=train_pipeline),
-    val=dict(type=dataset_type,
-             ann_file=data_root + 'annotations/instances_val2017.json',
-             img_prefix=data_root + 'val2017/',
-             pipeline=test_pipeline),
-    test=dict(type=dataset_type,
-              ann_file=data_root + 'annotations/instances_val2017.json',
-              img_prefix=data_root + 'val2017/',
-              pipeline=test_pipeline))
+data = dict(samples_per_gpu=2,
+            workers_per_gpu=2,
+            train=dict(type=dataset_type,
+                       ann_file=data_root + 'VOC2007/voc07_train.json',
+                       img_prefix=data_root,
+                       pipeline=train_pipeline),
+            val=dict(type=dataset_type,
+                     ann_file=data_root + 'VOC2007/voc07_test.json',
+                     img_prefix=data_root,
+                     pipeline=test_pipeline),
+            test=dict(type=dataset_type,
+                      ann_file=data_root + 'VOC2007/voc07_test.json',
+                      img_prefix=data_root,
+                      pipeline=test_pipeline))
