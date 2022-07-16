@@ -91,11 +91,9 @@ pre-commit install
 
 ### PASCAL VOC2007
 
-小数据集非常适合学习，适合没有GPU和只有一张GPU的用户深入学习目标检测
-
 https://opendatalab.com/PASCAL_VOC2007/download
 
-可以参考[PASCAL VOC2007数据集准备教程](docs/datasets/pascalvoc_2007.md)准备好调试MMDet所需要的数据集，我们会以PASCAL VOC2007数据集为载体，死磕MMDet源码。
+数据集准备请参考文档[PASCAL VOC2007数据集准备](docs/datasets/pascalvoc_2007.md)
 
 ### COCO 2017
 
