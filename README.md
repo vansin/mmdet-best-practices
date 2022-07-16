@@ -1,10 +1,10 @@
 # MMDetection最佳实践
 
-<div align="center">
+<!-- <div align="center">
 
 [English](README.md) | 简体中文
 
-</div>
+</div> -->
 
 本仓库将介绍①包含无侵入式自定义模型、数据集、Hook的最佳实践②提供参加目标检测比赛的模板③组织MMDetection源码共读活动
 
