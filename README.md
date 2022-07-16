@@ -67,6 +67,12 @@ pip install -v -e mmdetection
 pip install -v -e mmclassification
 ```
 
+### 安装本工具MMDetBP
+
+```shell
+pip install -v -e .
+```
+
 ### 代码规范相关(可选)
 
 ```shell
