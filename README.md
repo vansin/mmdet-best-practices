@@ -1,10 +1,10 @@
 # MMDetection最佳实践
 
-<div align="center">
+<!-- <div align="center">
 
 [English](README.md) | 简体中文
 
-</div>
+</div> -->
 
 本仓库将介绍①包含无侵入式自定义模型、数据集、Hook的最佳实践②提供参加目标检测比赛的模板③组织MMDetection源码共读活动
 
@@ -26,11 +26,13 @@ conda activate mmdet-bp
 ### 安装PyTorch
 
 conda安装pytorch
+
 ```shell
 conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
 ```
 
 pip安装pytoch(可能会快一点)
+
 ```shell
 pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113
 ```
@@ -72,6 +74,12 @@ pip install -v -e mmdetection
 pip install -v -e mmclassification
 ```
 
+### 安装本工具MMDetBP
+
+```shell
+pip install -v -e .
+```
+
 ### 代码规范相关(可选)
 
 ```shell
@@ -81,14 +89,24 @@ pre-commit install
 
 ## 2. 数据集
 
-### 重命名config
+### PASCAL VOC2007
 
-```shell
-find . -type f -name "*coco*" -print0 | while read -r -d '' file; do
-    mv "$file" "${file//coco/xray}"
-done
-```
+小数据集非常适合学习，适合没有GPU和只有一张GPU的用户深入学习目标检测
+
+https://opendatalab.com/PASCAL_VOC2007/download
+
+可以参考[PASCAL VOC2007数据集准备教程](docs/datasets/pascalvoc_2007.md)准备好调试MMDet所需要的数据集，我们会以PASCAL VOC2007数据集为载体，死磕MMDet源码。
+
+### COCO 2017
+
+如果你有比较充足的算力的话可以在COCO数据集上进行学习。
 
 ## 3. 比赛
 
-[X光安检图像检测挑战赛3.0](https://challenge.xfyun.cn/topic/info?type=Xray-2022)
+### 3.1 [X光安检图像检测挑战赛3.0](https://challenge.xfyun.cn/topic/info?type=Xray-2022)
+
+<!-- 已经整理好的数据集链接: https://pan.baidu.com/s/1C0luFgCyv_uxVAk3g1ruow 提取码: xray -->
+
+![](https://moonstarimg.oss-cn-hangzhou.aliyuncs.com/000008.jpg)
+
+![](https://moonstarimg.oss-cn-hangzhou.aliyuncs.com/000080.jpg)
