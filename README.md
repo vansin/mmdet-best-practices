@@ -105,6 +105,6 @@ https://opendatalab.com/PASCAL_VOC2007/download
 
 <!-- 已经整理好的数据集链接: https://pan.baidu.com/s/1C0luFgCyv_uxVAk3g1ruow 提取码: xray -->
 
-![](https://moonstarimg.oss-cn-hangzhou.aliyuncs.com/000008.jpg)
+<!-- ![](https://moonstarimg.oss-cn-hangzhou.aliyuncs.com/000008.jpg)
 
-![](https://moonstarimg.oss-cn-hangzhou.aliyuncs.com/000080.jpg)
+![](https://moonstarimg.oss-cn-hangzhou.aliyuncs.com/000080.jpg) -->
