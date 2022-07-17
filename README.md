@@ -86,7 +86,9 @@ pip install pre-commit
 pre-commit install
 ```
 
-## 2. 数据集
+## 2. 数据集准备
+
+推荐使用PASCAL VOC2007学习MMDetection
 
 ### PASCAL VOC2007
 
