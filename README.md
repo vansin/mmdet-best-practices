@@ -94,6 +94,12 @@ pre-commit install
 python tools/misc/download_dataset.py --dataset-name voc2007 --save-dir data --unzip --delete
 ```
 
+将以PASCAL VOC2007转换为COCO格式
+
+```shell
+python tools/dataset_converters/pascal_voc.py -o data/VOCdevkit --out-format coco data/VOCdevkit
+```
+
 如果以上命令因为网络问题不能下载，可以参考[PASCAL VOC2007数据集准备](docs/datasets/pascalvoc_2007.md)下载。
 
 ### COCO 2017
