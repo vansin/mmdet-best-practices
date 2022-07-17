@@ -10,6 +10,8 @@
 
 ![](https://moonstarimg.oss-cn-hangzhou.aliyuncs.com/img/20220717104508.png)
 
+![](https://moonstarimg.oss-cn-hangzhou.aliyuncs.com/img/20220717114817.png)
+
 ### 1.2. 解压
 
 ```shell
