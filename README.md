@@ -90,8 +90,6 @@ pre-commit install
 
 ### PASCAL VOC2007
 
-https://opendatalab.com/PASCAL_VOC2007/download
-
 ```shell
 python tools/misc/download_dataset.py --dataset-name voc2007 --save-dir data --unzip --delete
 ```
