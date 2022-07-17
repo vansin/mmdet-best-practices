@@ -110,6 +110,10 @@ python tools/dataset_converters/pascal_voc.py -o data/VOCdevkit --out-format coc
 
 如果你有比较充足的算力的话可以在COCO数据集上进行学习。
 
+### WIDER Face Detection
+
+http://shuoyang1213.me/WIDERFACE/
+
 ## 3. 比赛
 
 ### 3.1 [X光安检图像检测挑战赛3.0](https://challenge.xfyun.cn/topic/info?type=Xray-2022)
