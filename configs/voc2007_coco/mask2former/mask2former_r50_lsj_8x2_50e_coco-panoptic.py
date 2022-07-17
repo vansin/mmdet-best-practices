@@ -180,17 +180,17 @@ test_pipeline = [
              dict(type='Collect', keys=['img']),
          ])
 ]
-data_root = 'data/'
+data_root = 'data/VOCdevkit/'
 data = dict(samples_per_gpu=2,
             workers_per_gpu=2,
             train=dict(pipeline=train_pipeline),
             val=dict(
                 pipeline=test_pipeline,
-                ins_ann_file=data_root + 'VOC2007/voc07_test.json',
+                ins_ann_file=data_root + 'voc07_test.json',
             ),
             test=dict(
                 pipeline=test_pipeline,
-                ins_ann_file=data_root + 'VOC2007/voc07_test.json',
+                ins_ann_file=data_root + 'voc07_test.json',
             ))
 
 embed_multi = dict(lr_mult=1.0, decay_mult=0.0)

@@ -4,7 +4,7 @@ _base_ = [
 ]
 # dataset settings
 dataset_type = 'VOC2007CocoDataset'
-data_root = 'data/'
+data_root = 'data/VOCdevkit/'
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53], std=[1, 1, 1], to_rgb=True)
 train_pipeline = [
     dict(type='LoadImageFromFile'),

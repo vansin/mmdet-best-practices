@@ -80,7 +80,7 @@ test_pipeline = [
 ]
 
 dataset_type = 'VOC2007CocoDataset'
-data_root = 'data/'
+data_root = 'data/VOCdevkit/'
 
 # Use RepeatDataset to speed up training
 data = dict(samples_per_gpu=16,

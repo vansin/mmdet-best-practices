@@ -4,7 +4,7 @@ _base_ = [
     '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
 ]
 dataset_type = 'VOC2007CocoDataset'
-data_root = 'data/'
+data_root = 'data/VOCdevkit/'
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53],
                     std=[58.395, 57.12, 57.375],
                     to_rgb=True)

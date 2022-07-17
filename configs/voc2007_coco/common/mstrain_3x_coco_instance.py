@@ -1,7 +1,7 @@
 _base_ = '../_base_/default_runtime.py'
 # dataset settings
 dataset_type = 'VOC2007CocoDataset'
-data_root = 'data/'
+data_root = 'data/VOCdevkit/'
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53],
                     std=[58.395, 57.12, 57.375],
                     to_rgb=True)
@@ -47,7 +47,7 @@ data = dict(samples_per_gpu=2,
                                     img_prefix=data_root,
                                     pipeline=train_pipeline)),
             val=dict(type=dataset_type,
-                     ann_file=data_root + 'VOC2007/voc07_test.json',
+                     ann_file=data_root + 'voc07_test.json',
                      img_prefix=data_root,
                      pipeline=test_pipeline),
             test=dict(type=dataset_type,

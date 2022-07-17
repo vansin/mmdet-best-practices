@@ -13,7 +13,7 @@ model = dict(backbone=dict(norm_cfg=norm_cfg, norm_eval=False),
              roi_head=dict(bbox_head=dict(norm_cfg=norm_cfg),
                            mask_head=dict(norm_cfg=norm_cfg)))
 dataset_type = 'VOC2007CocoDataset'
-data_root = 'data/'
+data_root = 'data/VOCdevkit/'
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53],
                     std=[58.395, 57.12, 57.375],
                     to_rgb=True)

@@ -22,7 +22,7 @@ model = dict(
                              sampler=dict(num=256))),
     test_cfg=dict(rcnn=dict(score_thr=1e-3)))
 dataset_type = 'VOC2007CocoDataset'
-data_root = 'data/'
+data_root = 'data/VOCdevkit/'
 img_norm_cfg = dict(mean=[103.530, 116.280, 123.675],
                     std=[1.0, 1.0, 1.0],
                     to_rgb=False)
