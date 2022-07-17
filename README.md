@@ -93,7 +93,11 @@ pre-commit install
 
 https://opendatalab.com/PASCAL_VOC2007/download
 
-数据集准备请参考文档[PASCAL VOC2007数据集准备](docs/datasets/pascalvoc_2007.md)
+```shell
+python tools/misc/download_dataset.py --dataset-name voc2007 --save-dir data --unzip --delete
+```
+
+如果以上命令因为网络问题不能下载，可以参考[PASCAL VOC2007数据集准备](docs/datasets/pascalvoc_2007.md)下载。
 
 ### COCO 2017
 
