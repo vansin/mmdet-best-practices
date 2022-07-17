@@ -14,6 +14,8 @@
 git clone https://github.com/vansin/mmdet-best-practices.git
 ```
 
+[速度过慢请查看此文档](./docs/proxy.md)
+
 ### 创建虚拟环境
 
 ```shell
