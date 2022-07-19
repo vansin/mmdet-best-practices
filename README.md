@@ -19,7 +19,7 @@ git clone https://github.com/vansin/mmdet-best-practices.git
 ### 创建虚拟环境
 
 ```shell
-conda create --name mmdetbp python=3.9 -y
+conda create --name mmdet-dev-3.x python=3.9 -y
 # 进入虚拟环境，后续所有操作都需要在mmdetbp虚拟环境中操作
 conda activate mmdetbp
 ```
