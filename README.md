@@ -21,7 +21,7 @@ git clone https://github.com/vansin/mmdet-best-practices.git
 ```shell
 conda create --name mmdet-dev-3.x python=3.9 -y
 # 进入虚拟环境，后续所有操作都需要在mmdetbp虚拟环境中操作
-conda activate mmdetbp
+conda activate mmdet-dev-3.x
 ```
 
 ### 安装PyTorch
