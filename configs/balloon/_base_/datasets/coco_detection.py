@@ -1,5 +1,5 @@
 # dataset settings
-dataset_type = 'COCODataset'
+dataset_type = 'CocoDataset'
 data_root = 'data/'
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53],
                     std=[58.395, 57.12, 57.375],
@@ -32,14 +32,21 @@ test_pipeline = [
          ])
 ]
 
-data = dict(train=dict(img_prefix='balloon/train/',
+data = dict(samples_per_gpu=1,
+            workers_per_gpu=1,
+            train=dict(type=dataset_type,
+                       ann_file=data_root + 'balloon/train.json',
+                       img_prefix=data_root + 'balloon/train/',
                        classes=classes,
-                       ann_file='balloon/train.json'),
-            val=dict(img_prefix='balloon/val/',
+                       pipeline=train_pipeline),
+            val=dict(type=dataset_type,
+                     ann_file=data_root + 'balloon/val.json',
+                     img_prefix=data_root + 'balloon/val/',
                      classes=classes,
-                     ann_file='balloon/val.json'),
-            test=dict(img_prefix='balloon/val/',
+                     pipeline=test_pipeline),
+            test=dict(type=dataset_type,
+                      ann_file=data_root + 'balloon/val.json',
+                      img_prefix=data_root + 'balloon/val/',
                       classes=classes,
-                      ann_file='balloon/val.json'))
-
+                      pipeline=test_pipeline))
 evaluation = dict(interval=1, metric='bbox')

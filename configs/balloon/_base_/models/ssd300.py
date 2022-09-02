@@ -18,7 +18,7 @@ model = dict(
               l2_norm_scale=20),
     bbox_head=dict(type='SSDHead',
                    in_channels=(512, 1024, 512, 256, 256, 256),
-                   num_classes=20,
+                   num_classes=1,
                    anchor_generator=dict(type='SSDAnchorGenerator',
                                          scale_major=False,
                                          input_size=input_size,
