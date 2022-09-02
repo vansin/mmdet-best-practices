@@ -90,7 +90,14 @@ pre-commit install
 
 ## 2. 数据集准备
 
-推荐使用PASCAL VOC2007学习MMDetection
+推荐使用balloon气球数据集学习MMDetection
+
+### balloon
+
+```shell
+python tools/misc/download_dataset.py  --dataset-name balloon --save-dir data
+python tools/dataset_converters/ballon2coco.py
+```
 
 ### PASCAL VOC2007
 

@@ -11,29 +11,30 @@ import torch
 def parse_args():
     parser = argparse.ArgumentParser(
         description='Download datasets for training')
-    parser.add_argument(
-        '--dataset-name', type=str, help='dataset name', default='coco2017')
-    parser.add_argument(
-        '--save-dir',
-        type=str,
-        help='the dir to save dataset',
-        default='data/coco')
+    parser.add_argument('--dataset-name',
+                        type=str,
+                        help='dataset name',
+                        default='coco2017')
+    parser.add_argument('--save-dir',
+                        type=str,
+                        help='the dir to save dataset',
+                        default='data/coco')
     parser.add_argument(
         '--unzip',
         action='store_true',
         help='whether unzip dataset or not, zipped files will be saved')
-    parser.add_argument(
-        '--delete',
-        action='store_true',
-        help='delete the download zipped files')
-    parser.add_argument(
-        '--threads', type=int, help='number of threading', default=4)
+    parser.add_argument('--delete',
+                        action='store_true',
+                        help='delete the download zipped files')
+    parser.add_argument('--threads',
+                        type=int,
+                        help='number of threading',
+                        default=4)
     args = parser.parse_args()
     return args
 
 
 def download(url, dir, unzip=True, delete=False, threads=1):
-
     def download_one(url, dir):
         f = dir / Path(url).name
         if Path(url).is_file():
@@ -85,17 +86,19 @@ def main():
             'http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar',  # noqa
             'http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCdevkit_08-Jun-2007.tar',  # noqa
         ],
-    )
+        balloon=[
+            'https://github.com/matterport/Mask_RCNN/' +
+            'releases/download/v2.1/balloon_dataset.zip'
+        ])
     url = data2url.get(args.dataset_name, None)
     if url is None:
         print('Only support COCO, VOC, and LVIS now!')
         return
-    download(
-        url,
-        dir=path,
-        unzip=args.unzip,
-        delete=args.delete,
-        threads=args.threads)
+    download(url,
+             dir=path,
+             unzip=args.unzip,
+             delete=args.delete,
+             threads=args.threads)
 
 
 if __name__ == '__main__':
