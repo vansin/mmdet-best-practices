@@ -95,8 +95,9 @@ pre-commit install
 ### balloon
 
 ```shell
-python tools/misc/download_dataset.py  --dataset-name balloon --save-dir data
+python tools/misc/download_dataset.py  --dataset-name balloon --save-dir data --unzip
 python tools/dataset_converters/ballon2coco.py
+python tools/train.py configs/balloon/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py
 ```
 
 ### PASCAL VOC2007
