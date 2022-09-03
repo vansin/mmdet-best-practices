@@ -4,6 +4,9 @@ data_root = 'data/VOCdevkit/'
 img_norm_cfg = dict(mean=[123.675, 116.28, 103.53],
                     std=[58.395, 57.12, 57.375],
                     to_rgb=True)
+
+classes = ('balloon', )
+
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
@@ -28,18 +31,23 @@ test_pipeline = [
              dict(type='Collect', keys=['img']),
          ])
 ]
-data = dict(samples_per_gpu=2,
-            workers_per_gpu=2,
+
+data = dict(samples_per_gpu=1,
+            workers_per_gpu=1,
             train=dict(type=dataset_type,
-                       ann_file=data_root + 'voc07_train.json',
-                       img_prefix=data_root,
+                       ann_file=data_root + 'balloon/train.json',
+                       img_prefix=data_root + 'balloon/train/',
+                       classes=classes,
                        pipeline=train_pipeline),
             val=dict(type=dataset_type,
-                     ann_file=data_root + 'voc07_test.json',
-                     img_prefix=data_root,
+                     ann_file=data_root + 'balloon/val.json',
+                     img_prefix=data_root + 'balloon/val/',
+                     classes=classes,
                      pipeline=test_pipeline),
             test=dict(type=dataset_type,
-                      ann_file=data_root + 'voc07_test.json',
-                      img_prefix=data_root,
+                      ann_file=data_root + 'balloon/val.json',
+                      img_prefix=data_root + 'balloon/val/',
+                      classes=classes,
                       pipeline=test_pipeline))
+
 evaluation = dict(metric=['bbox', 'segm'])
