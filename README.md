@@ -21,3 +21,15 @@ mim install mmengine
 mim install "mmcv>=2.0.0rc1"
 mim install "mmdet>=3.0.0rc0"
 ```
+
+## 2. 数据集准备
+
+推荐使用balloon气球数据集学习MMDetection
+
+### balloon
+
+```shell
+python tools/misc/download_dataset.py  --dataset-name balloon --save-dir data --unzip
+python tools/dataset_converters/ballon2coco.py
+python tools/train.py configs/balloon/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py
+```
