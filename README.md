@@ -6,7 +6,7 @@
 
 
 ```shell
-git clone -b 3.x https://github.com/vansin/mmdet-best-practices.git
+git clone -b 3.x https://github.com/vansin/mmdet-best-practices.git mmdet-best-practices-3.x
 ```
 
 
