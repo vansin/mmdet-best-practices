@@ -7,7 +7,13 @@
 
 ```shell
 git clone -b 3.x https://github.com/vansin/mmdet-best-practices.git mmdet-best-practices-3.x
+
+
+cd mmdet-best-practices-3.x
+# 在运行如需使用 mmdet_custom中的模块，请执行以下命令
+export PYTHONPATH=./
 ```
+
 
 
 ```shell
@@ -46,4 +52,24 @@ mim install "mmdet>=3.0.0rc0"
 python tools/misc/download_dataset.py  --dataset-name balloon --save-dir data --unzip
 python tools/dataset_converters/balloon2coco.py
 python tools/train.py configs/balloon/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py
+```
+
+## debug配置
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Current Config File",
+            "type": "python",
+            "request": "launch",
+            "program": "tools/train.py",
+            "console": "integratedTerminal",
+            "args": ["${file}"],
+            "env": {"PYTHONPATH":"./"},
+            "justMyCode": true
+        }
+    ]
+}
 ```
