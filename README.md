@@ -19,6 +19,20 @@ pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --e
 pip install -U openmim
 mim install mmengine
 mim install "mmcv>=2.0.0rc1"
+```
+
+源码安装MMDet 3.x
+```shell
+git clone -b 3.x https://github.com/open-mmlab/mmdetection.git MMDet-3.x
+# "-b 3.x" 表示切换到 `3.x` 分支。
+cd MMDet-3.x
+pip install -v -e .
+# "-v" 指详细说明，或更多的输出
+# "-e" 表示在可编辑模式下安装项目，因此对代码所做的任何本地修改都会生效，从而无需重新安装。
+```
+
+mim安装MMDet 3.x
+```shll
 mim install "mmdet>=3.0.0rc0"
 ```
 
