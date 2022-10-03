@@ -23,3 +23,7 @@ optim_wrapper = dict(paramwise_cfg={
     'decay_type': 'layer_wise',
     'num_layers': 12
 })
+
+custom_hooks = [
+    dict(type='MaxValueHook')
+]
