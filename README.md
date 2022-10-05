@@ -73,3 +73,7 @@ python tools/train.py configs/balloon/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py
     ]
 }
 ```
+
+```shell
+--cfg-options default_hooks.visualization.draw=True default_hooks.visualization.interval=1
+```
