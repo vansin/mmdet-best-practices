@@ -6,7 +6,7 @@ _base_ = [
 
 # please install mmcls>=1.0
 # import mmcls.models to trigger register_module in mmcls
-custom_imports = dict(imports=['mmcls.models'], allow_failed_imports=False)
+custom_imports = dict(imports=['mmcls.models', 'mmdet_custom.engine'], allow_failed_imports=False)
 checkpoint_file = 'https://download.openmmlab.com/mmclassification/v0/swin-v2/swinv2-small-w16_3rdparty_in1k-256px_20220803-b707d206.pth'  # noqa
 
 model = dict(
@@ -18,9 +18,9 @@ model = dict(
         drop_path_rate=0.4,
         # layer_scale_init_value=1.0,
         # gap_before_final_norm=False,
-        # init_cfg=dict(
-        #     type='Pretrained', checkpoint=checkpoint_file,
-        #     prefix='backbone.')
+        init_cfg=dict(
+            type='Pretrained', checkpoint=checkpoint_file,
+            prefix='backbone.')
         ),
     neck=dict(in_channels=[96, 192, 384, 768]),
     roi_head=dict(bbox_head=[
