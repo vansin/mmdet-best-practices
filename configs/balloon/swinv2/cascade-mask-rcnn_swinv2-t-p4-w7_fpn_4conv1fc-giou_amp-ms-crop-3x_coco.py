@@ -6,21 +6,22 @@ _base_ = [
 
 # please install mmcls>=1.0
 # import mmcls.models to trigger register_module in mmcls
-custom_imports = dict(imports=['mmcls.models'], allow_failed_imports=False)
-checkpoint_file = 'https://download.openmmlab.com/mmclassification/v0/convnext/downstream/convnext-tiny_3rdparty_32xb128-noema_in1k_20220301-795e9634.pth'  # noqa
+custom_imports = dict(imports=['mmcls.models', 'mmdet_custom.engine'], allow_failed_imports=False)
+checkpoint_file = 'https://download.openmmlab.com/mmclassification/v0/swin-v2/swinv2-small-w16_3rdparty_in1k-256px_20220803-b707d206.pth'  # noqa
 
 model = dict(
     backbone=dict(
         _delete_=True,
-        type='mmcls.ConvNeXt',
-        arch='tiny',
+        type='mmcls.SwinTransformerV2',
+        arch='small',
         out_indices=[0, 1, 2, 3],
         drop_path_rate=0.4,
-        layer_scale_init_value=1.0,
-        gap_before_final_norm=False,
+        # layer_scale_init_value=1.0,
+        # gap_before_final_norm=False,
         init_cfg=dict(
             type='Pretrained', checkpoint=checkpoint_file,
-            prefix='backbone.')),
+            prefix='backbone.')
+        ),
     neck=dict(in_channels=[96, 192, 384, 768]),
     roi_head=dict(bbox_head=[
         dict(
@@ -139,20 +140,20 @@ param_scheduler = [
 ]
 
 # Enable automatic-mixed-precision training with AmpOptimWrapper.
-optim_wrapper = dict(
-    type='AmpOptimWrapper',
-    constructor='LearningRateDecayOptimizerConstructor',
-    paramwise_cfg={
-        'decay_rate': 0.7,
-        'decay_type': 'layer_wise',
-        'num_layers': 6
-    },
-    optimizer=dict(
-        _delete_=True,
-        type='AdamW',
-        lr=0.0002,
-        betas=(0.9, 0.999),
-        weight_decay=0.05))
+# optim_wrapper = dict(
+#     type='AmpOptimWrapper',
+#     constructor='LearningRateDecayOptimizerConstructor',
+#     paramwise_cfg={
+#         'decay_rate': 0.7,
+#         'decay_type': 'layer_wise',
+#         'num_layers': 6
+#     },
+#     optimizer=dict(
+#         _delete_=True,
+#         type='AdamW',
+#         lr=0.0002,
+#         betas=(0.9, 0.999),
+#         weight_decay=0.05))
 
 # custom_hooks = [
 #     dict(type='MaxValueHook')
