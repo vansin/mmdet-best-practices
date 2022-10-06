@@ -2,7 +2,7 @@
 import argparse
 
 import torch
-from fvcore.nn import FlopCountAnalysis, flop_count_table
+from fvcore.nn import FlopCountAnalysis, flop_count_table, parameter_count_table
 from mmengine import Config
 
 from mmdet.registry import MODELS
@@ -49,12 +49,12 @@ def main():
     # flops = FlopCountAnalysis(model, (torch.ones(input_shape), data_batch['data_samples']))
     # flops = FlopCountAnalysis(model,{"inputs": data_batch['inputs'],"data_samples": data_batch['data_samples']})
     # flops = FlopCountAnalysis(model,data_batch['inputs'][0])
-    flops = FlopCountAnalysis(model,torch.ones(input_shape))
+    # flops = FlopCountAnalysis(model,torch.ones(input_shape))
 
-    # params = parameter_count_table(model)
-    flops_data = flop_count_table(flops)
-
-    print(flops_data)
+    params = parameter_count_table(model)
+    # flops_data = flop_count_table(flops)
+    print(params)
+    # print(flops_data)
 
     print('!!!Please be cautious if you use the results in papers. '
           'You may need to check if all ops are supported and verify that the '
