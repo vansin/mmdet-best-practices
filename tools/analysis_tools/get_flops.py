@@ -4,6 +4,7 @@ import argparse
 import torch
 from fvcore.nn import FlopCountAnalysis, flop_count_table, parameter_count_table
 from mmengine import Config
+from functools import partial
 
 from mmdet.registry import MODELS
 from mmdet.utils import register_all_modules
@@ -38,23 +39,29 @@ def main():
     input_shape = (1, 3, h, w)
     cfg = Config.fromfile(args.config)
 
-    # dataloader = Runner.build_dataloader(cfg.val_dataloader)
+    dataloader = Runner.build_dataloader(cfg.val_dataloader)
+
+    for idx, data_batch in enumerate(dataloader):
+        print(idx, data_batch)
+        break
 
     model = MODELS.build(cfg.model)
+    _forward = model.forward
 
-    # for idx, data_batch in enumerate(dataloader):
-    #     print(idx, data_batch)
-    #     break
+    data = model.data_preprocessor(data_batch)
 
-    # flops = FlopCountAnalysis(model, (torch.ones(input_shape), data_batch['data_samples']))
+    model.forward = partial(_forward, data_samples=data['data_samples'])
+
+    # flops = FlopCountAnalysis(model, torch.ones(input_shape))
+    flops = FlopCountAnalysis(model, data['inputs'])
     # flops = FlopCountAnalysis(model,{"inputs": data_batch['inputs'],"data_samples": data_batch['data_samples']})
     # flops = FlopCountAnalysis(model,data_batch['inputs'][0])
     # flops = FlopCountAnalysis(model,torch.ones(input_shape))
 
-    params = parameter_count_table(model)
-    # flops_data = flop_count_table(flops)
-    print(params)
-    # print(flops_data)
+    # params = parameter_count_table(model)
+    flops_data = flop_count_table(flops)
+    # print(params)
+    print(flops_data)
 
     print('!!!Please be cautious if you use the results in papers. '
           'You may need to check if all ops are supported and verify that the '
