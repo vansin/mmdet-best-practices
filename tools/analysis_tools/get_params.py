@@ -43,6 +43,7 @@ def main():
 
     model = MODELS.build(cfg.model)
 
+    print(model)
     # for idx, data_batch in enumerate(dataloader):
     #     print(idx, data_batch)
     #     break
