@@ -1,6 +1,6 @@
 # dataset settings
 dataset_type = 'CocoDataset'
-data_root = 'data/balloon/'
+data_root = 'data/algae/'
 
 # file_client_args = dict(
 #     backend='petrel',
@@ -10,10 +10,7 @@ data_root = 'data/balloon/'
 #     }))
 
 metainfo = {
-    'CLASSES': ("Bacillariophyta", "Chlorella", "Chrysophyta", "Dunaliella_salina", "Platymonas", "translating_Symbiodinium", "bleaching_Symbiodinium", "normal_Symbiodinium"),
-    'PALETTE': [
-        (220, 20, 60),
-    ]
+    'CLASSES': ("Bacillariophyta", "Chlorella", "Chrysophyta", "Dunaliella_salina", "Platymonas", "translating_Symbiodinium", "bleaching_Symbiodinium", "normal_Symbiodinium")
 }
 
 file_client_args = dict(backend='disk')
@@ -47,7 +44,7 @@ train_dataloader = dict(
         data_root=data_root,
         metainfo=metainfo,
         ann_file='train.json',
-        data_prefix=dict(img='train/'),
+        data_prefix=dict(img='img/'),
         filter_cfg=dict(filter_empty_gt=True, min_size=32),
         pipeline=train_pipeline))
 val_dataloader = dict(
@@ -60,15 +57,15 @@ val_dataloader = dict(
         type=dataset_type,
         data_root=data_root,
         metainfo=metainfo,
-        ann_file='val.json',
-        data_prefix=dict(img='val/'),
+        ann_file='train.json',
+        data_prefix=dict(img='img/'),
         test_mode=True,
         pipeline=test_pipeline))
 test_dataloader = val_dataloader
 
 val_evaluator = dict(
     type='CocoMetric',
-    ann_file=data_root + 'val.json',
+    ann_file=data_root + 'train.json',
     metric=['bbox', 'segm'],
     format_only=False)
 test_evaluator = val_evaluator
