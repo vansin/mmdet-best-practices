@@ -10,7 +10,7 @@ algorithms = os.listdir(prefix+prefix1)
 configs_list = []
 
 
-html_content = ""
+html_content = '<meta charset="utf-8"> \n'
 
 
 
@@ -20,7 +20,7 @@ for algorithm in algorithms:
     for config in configs:
         if config.endswith('.svg'):
             configs_list.append(prefix + algorithm + '/' + config)
-            csv_template = f'<a href="{prefix1+ algorithm +"/" + config}" target="_blank" rel="noopener noreferrer">{prefix1+ algorithm + config.replace(".svg", " 模型图")}</a><br>'
+            csv_template = f'<a href="{prefix1+ algorithm +"/" + config}" target="_blank" rel="noopener noreferrer">{prefix1+ algorithm + "/" + config.replace(".svg", " 模型图")}</a><br>'
             html_content += csv_template + '\n'
 
 

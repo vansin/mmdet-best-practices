@@ -26,6 +26,10 @@ from torchinfo import summary
 # graphviz.set_default_engine('')
 graphviz.set_default_format('svg')
 
+
+import pandas as pd
+
+
 def draw_model(config, filename):
 
     cfg = Config.fromfile(config)
@@ -50,6 +54,11 @@ def draw_model(config, filename):
 
     model_graph.visual_graph.render(filename=filename, view=False, cleanup=True)
 
+
+
+result_configs = []
+
+
 if __name__ == '__main__':
 
     # prefix = 'mmdetection/configs/'
@@ -67,13 +76,26 @@ if __name__ == '__main__':
 
     # print(configs_list)
 
+
     for i, config in enumerate(configs_list):
         print(i, config, configs_list.__len__())
         config.replace('mmdetection', 'model_visual/mmdetection')
+        
+        result_dict = dict()
+        result_dict['config'] = config
+
         try:
             draw_model(config, config.replace('mmdetection', 'model_visualization'))
+            result_dict['result'] = 'PASS'
             print('PASS')
         except Exception as e:
+            result_dict['result'] = 'FAIL'
+            result_dict['error'] = str(e)
             print(e)
             print('FAIL')
             # print(config)
+    
+        result_configs.append(result_dict)
+
+
+    pd.DataFrame(result_configs).to_csv('result.csv')
